@@ -1,9 +1,5 @@
 # MIPS Hazard Analyzer - Data Flow Diagram (Mermaid)
 
-## Mermaid Flowchart DFD Code
-
-Copy the code below and paste it into https://mermaid.live/ to render and export as PNG/SVG.
-
 ```mermaid
 graph TD
     A["👤 User"] -->|"MIPS Code Input"| B["📝 Code Editor<br/>Data Store"]
