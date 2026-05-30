@@ -95,14 +95,7 @@ java -cp ".:lib/*" HazardAnalyzerComplete
 
 Note: If iText is not found, the app falls back to text-only exports.
 
-## 🔧 Troubleshooting
 
-| Issue | Solution |
-|------:|:--------|
-| "ClassNotFoundException" for iText | Place iText JAR(s) in lib/ and run with `-cp .;lib/*` (Windows) or `-cp .:lib/*` (Linux/macOS) |
-| GUI not appearing | Ensure you're running on a desktop environment (not headless) |
-| Compilation errors | Verify JDK 11+ is installed: `javac -version` |
-| No hazards detected | Try "Load Example" to test with valid MIPS code |
 
 ## 📝 Example MIPS Code
 
