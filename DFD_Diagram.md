@@ -56,4 +56,3 @@ graph TD
 ---
 
 
-**Ready to render?** 🎨 Copy the Mermaid code above and go to mermaid.live!
