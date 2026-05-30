@@ -6,30 +6,8 @@
 - **Document Version:** 1.0
 - **Authors:** Rameesha, Urva, Asad
 - **Course:** Computer Architecture (Semester 6)
-- **Institution:** [Your University Name]
+- **Institution:** Comsats University Islamabad
 
----
-
-## Table of Contents
-
-1. [Executive Summary](#executive-summary)
-2. [Project Overview](#project-overview)
-3. [System Architecture](#system-architecture)
-4. [Installation & Setup Guide](#installation--setup-guide)
-5. [User Guide & Features](#user-guide--features)
-6. [Technical Implementation](#technical-implementation)
-7. [Code Structure & Components](#code-structure--components)
-8. [Data Flow & Processing](#data-flow--processing)
-9. [Hazard Detection System](#hazard-detection-system)
-10. [Performance Metrics Calculation](#performance-metrics-calculation)
-11. [UI/UX Design](#uiux-design)
-12. [Example Analysis & Results](#example-analysis--results)
-13. [API Reference](#api-reference)
-14. [Troubleshooting Guide](#troubleshooting-guide)
-15. [Future Enhancements](#future-enhancements)
-16. [Appendices](#appendices)
-
----
 
 ## Executive Summary
 
