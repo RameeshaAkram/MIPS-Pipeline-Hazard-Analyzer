@@ -1,50 +1,88 @@
 # MIPS Pipeline Hazard Analyzer
 
-A compact, open-source Java Swing application for detecting and visualizing pipeline hazards in MIPS assembly code. This repository contains the complete application as a set of Java source files (no build system required).
+A comprehensive Java-based tool for detecting, visualizing, and analyzing pipeline hazards in MIPS assembly code. Detects 5 hazard types (RAW, WAR, WAW, Control, Structural) with real-time pipeline simulation and performance metrics.
 
-If you'd like, I can add a license (MIT recommended), screenshots, or a Gradle/Maven build. Tell me which you prefer and I'll add them.
+## ✨ Features
 
-## What this repository actually contains
+- **5 Hazard Types Detected** - RAW, WAR, WAW, Control, and Structural hazards
+- **Pipeline Stage Simulation** - IF, ID, EX, MEM, WB stages with cycle-by-cycle view
+- **Interactive Animation** - Play, pause, step through pipeline execution
+- **Performance Metrics** - CPI, throughput, stall percentage calculation
+- **Multiple Visualizations** - Gantt chart, heatmap, and hazard grid views
+- **Register File Viewer** - Track all 32 MIPS registers with read/write counts
+- **Export Reports** - TXT export (always available) and PDF export (optional)
 
-- `HazardAnalyzerComplete.java` — main application (single-file Swing app)
-- `HazardAnalyzerComplete_backup.java` — backup copy
-- `CODE_FUNCTIONALITY.md`, `COMPLETE_PROJECT_DOCUMENTATION.md`, `DFD_Diagram.md` — project docs
-- `Research_Paper.md` and `RESEARCH PAPER/` — research artifacts
-- `lib/` — third-party jars (currently empty)
+### Seven Analysis Views
 
-## Quick facts
+| Tab | Purpose |
+|-----|---------|
+| Pipeline Simulation | Cycle-by-cycle execution with animation controls |
+| Hazard Report | Detailed list of all detected hazards with descriptions |
+| Performance Metrics | CPI, throughput, stall percentage with assessment |
+| Hazard Visualization | Color-coded hazard grid |
+| Pipeline Stage Gantt | Timeline view of instruction stages |
+| Hazard Heatmap | Density analysis of hazards across instructions |
+| Register File | Current state of all 32 MIPS registers |
 
-- Language: Java (Swing)
-- Entry point: `HazardAnalyzerComplete.main`
-- Build: No build tool required; compile with `javac` and run with `java`
-- PDF export: optional; requires adding iText JAR(s) to `lib/`
+## 🚀 Quick Start
 
-## Quick Start
+### Prerequisites
+- Java Development Kit (JDK) 11 or newer
+- `javac` and `java` available on PATH
 
-1. Open a terminal in the project root (where `HazardAnalyzerComplete.java` is located).
-2. Compile:
+### Build and Run
 
-```powershell
+Open a terminal in the project root and run:
+
+```bash
+# 1. Compile the program
 javac HazardAnalyzerComplete.java
-```
 
-3. Run:
-
-```powershell
+# 2. Run the program
 java HazardAnalyzerComplete
 ```
 
-4. Use the GUI: Load code, click **Analyze Hazards**, inspect the tabs, export text report.
+### Basic Usage
 
-## Notes about PDF export
+- Load or write MIPS code - Use "Load File" or "Load Example" buttons
+- Click "Analyze Hazards" - Run the detection engine
+- Explore results - Navigate through the 7 tabs to see different views
+- Export report - Save analysis as TXT file
 
-PDF export uses iText via reflection if the JARs are present. To enable it:
+## 📁 Project Layout
 
-1. Download the iText 7 JAR(s) and place them in `lib/`.
-2. Compile and run with the classpath including `lib/*`:
+```
+MIPS-Pipeline-Hazard-Analyzer/
+├── HazardAnalyzerComplete.java          # Main application (single-file Swing app)
+├── HazardAnalyzerComplete_backup.java   # Previous version backup
+├── CODE_FUNCTIONALITY.md                # Technical documentation
+├── DFD_Diagram.md                       # Data flow diagrams
+├── lib/                                 # Third-party JARs (empty by default)
+└── README.md                            # This file
+```
+
+## 💡 Usage Tips
+
+- Use Load Example to see a pre-written MIPS program with multiple hazard types
+
+- The Pipeline Simulation tab lets you play/step through cycles and see hazards in real-time
+
+- Hazard Report shows detailed descriptions of each detected hazard with instruction pairs
+
+- Performance Metrics displays CPI, throughput, and stall percentage with color-coded assessment
+
+- Use Export Report to save analysis results as a text file
+
+## 📄 PDF Export (Optional)
+
+PDF export uses iText via reflection. To enable it:
+
+1. Download iText 7 JAR(s) and place them in the lib/ folder
+
+2. Compile and run with classpath including lib/*
 
 Windows:
-```powershell
+```bash
 javac -cp "lib/*" HazardAnalyzerComplete.java
 java -cp ".;lib/*" HazardAnalyzerComplete
 ```
@@ -55,21 +93,66 @@ javac -cp "lib/*" HazardAnalyzerComplete.java
 java -cp ".:lib/*" HazardAnalyzerComplete
 ```
 
-If iText is not found, the app will fall back to exporting text-only reports and show a helpful message.
+Note: If iText is not found, the app falls back to text-only exports.
 
-## Minimal README — what I changed
+## 🔧 Troubleshooting
 
-- Removed large promotional sections and screenshots placeholder.
-- Kept accurate build/run instructions for this repo layout.
-- Noted that the project is open-source and offered to add a license file you prefer.
+| Issue | Solution |
+|------:|:--------|
+| "ClassNotFoundException" for iText | Place iText JAR(s) in lib/ and run with `-cp .;lib/*` (Windows) or `-cp .:lib/*` (Linux/macOS) |
+| GUI not appearing | Ensure you're running on a desktop environment (not headless) |
+| Compilation errors | Verify JDK 11+ is installed: `javac -version` |
+| No hazards detected | Try "Load Example" to test with valid MIPS code |
 
-## Next steps I can do for you (pick any)
+## 📝 Example MIPS Code
 
-- Add an `LICENSE` file (MIT by default).
-- Add a small `build.gradle` to produce a runnable JAR.
-- Add GitHub Actions workflow to compile on push and create a release artifact.
+```assembly
+# Simple program with RAW hazards
+add $t0, $s0, $s1    # Instruction 1 - writes $t0
+lw $t1, 0($t0)       # Instruction 2 - RAW hazard (reads $t0)
+add $t2, $t1, $s2    # Instruction 3 - RAW hazard (reads $t1)
+beq $t0, $t3, end    # Instruction 4 - Control hazard
+add $v0, $zero, $zero
+end:
+jr $ra
+```
 
-Tell me which of the next steps you want and I'll implement it.
+## 📊 Performance Metrics Explained
+
+| Metric | Formula | Ideal Value |
+|--------|---------:|:------------|
+| CPI (Cycles Per Instruction) | Total Cycles ÷ Instructions | 1.0 |
+| Throughput | 1 ÷ CPI | 1.0 IPC |
+| Stall Percentage | (Stall Cycles ÷ Total Cycles) × 100 | 0% |
+
+### Performance Assessment Scale
+
+| CPI Range | Assessment |
+|:---------:|:-----------|
+| 1.0 | IDEAL - No pipeline stalls |
+| 1.1 - 1.3 | EXCELLENT - <30% slowdown |
+| 1.3 - 1.6 | GOOD - 30-60% slowdown |
+| 1.6 - 2.0 | MODERATE - 60-100% slowdown |
+| > 2.0 | POOR - >100% slowdown |
+
+## 📚 Documentation
+
+- `CODE_FUNCTIONALITY.md` - Technical specifications and algorithms
+
+- `DFD_Diagram.md` - Data flow diagrams and system architecture
+
+## 👥 Authors
+
+Rameesha, Urva, Asad
+
+Course: Computer Architecture (Semester 6)
+Version: 2.1
+Last Updated: May 2026
+
+⭐ Show Your Support
+
+If you find this project useful for learning computer architecture, please consider giving it a star on GitHub!
+
 
 # MIPS Pipeline Hazard Analyzer
 
